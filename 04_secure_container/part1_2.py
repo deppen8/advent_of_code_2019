@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 INPUT_RANGE = range(388888, 800000)
 
 
@@ -21,4 +24,12 @@ for n in INPUT_RANGE:
     if not has_zero_one_two(s) and has_consecutive_numbers_and_increases(s):
         possibilities.append(int(s))
 
-print(len(possibilities))
+# print(len(possibilities))
+
+new_possibilities = []
+for value in possibilities:
+    s = str(value)
+    if 2 in Counter(s).values():
+        new_possibilities.append(s)
+
+print(len(new_possibilities))
