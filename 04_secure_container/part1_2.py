@@ -1,10 +1,11 @@
 from collections import Counter
+from typing import List
 
-# Given input was "382345-843167", but the first and last actual possibilities are 388888 and 799999
+# Given input was "382345-843167", but the first and last actual possibilities are 388888 and 799999, hence
 INPUT_RANGE = range(388888, 800000)
 
 
-def has_consecutive_numbers_and_increases(num: str):
+def has_consecutive_numbers_and_increases(num: str) -> bool:
     for i in range(5):
         if num[i] > num[i + 1]:
             return False
@@ -12,17 +13,16 @@ def has_consecutive_numbers_and_increases(num: str):
         return True
 
 
-possibilities = []
+possibilities: List[str] = []
 for n in INPUT_RANGE:
     s = str(n)
     if has_consecutive_numbers_and_increases(s):
-        possibilities.append(int(s))
+        possibilities.append(s)
 
 print(len(possibilities))
 
-new_possibilities = []
-for value in possibilities:
-    s = str(value)
+new_possibilities: List[str] = []
+for s in possibilities:
     if 2 in Counter(s).values():
         new_possibilities.append(s)
 
